@@ -1,5 +1,22 @@
-Build instructions:
+WSL2 Kernel Build Instructions
 
-1. Install a recent Ubuntu distribution (we used 16.04.6)
-2. sudo apt install build-essential flex bison libssl-dev libelf-dev (we used versions 12.1ubuntu2, 2.6.0-11, 2:3.0.4.dfsg-1, 1.0.2g-1ubuntu4.15, and 0.165-3ubuntu1.1 respectively)
-3. make wsl2_defconfig all
+1. Install a recent Linux distribution
+	Microsoft used Ubuntu 16.04.6.
+
+2. Install GCC and other essential development packages, flex, bison, openssl headers, and libelf headers
+	Example command for Ubuntu: sudo apt install build-essential flex bison libssl-dev libelf-dev
+	Microsoft used versions 12.1ubuntu2, 2.6.0-11, 2:3.0.4.dfsg-1, 1.0.2g-1ubuntu4.15, and 0.165-3ubuntu1.1 respectively.
+
+3. Select the WSL2 config and build the kernel
+	Command: make wsl2_defconfig all
+
+4. Replace the kernel used by the WSL2 utility VM on Windows
+	Product path: arch/x86/boot/compressed/vmlinux.bin
+	Windows path as of build 18917: C:\Windows\WinSxS\amd64_microsoft-windows-lxss-vm-mode-kernel_31bf3856ad364e35_10.0.18917.1000_none_e6f1b244a9bcc14c\kernel
+
+	The kernel can be replaced like a regular file after completing the following steps:
+		1. Shut down the utility VM: wsl --shutdown
+		2. Take ownership of the folder using Explorer (Properties -> Security -> Advanced -> Owner -> Change)
+		3. Grant full control of the folder and file to Administrators or your user of choice
+
+	BE SURE TO MAKE A BACKUP OF THE OFFICIAL KERNEL BEFOREHAND!
