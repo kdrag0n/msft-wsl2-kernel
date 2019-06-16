@@ -1,0 +1,5 @@
+Build instructions:
+
+1. Install a recent Ubuntu distribution (we used 16.04.6)
+2. sudo apt install build-essential flex bison libssl-dev libelf-dev (we used versions 12.1ubuntu2, 2.6.0-11, 2:3.0.4.dfsg-1, 1.0.2g-1ubuntu4.15, and 0.165-3ubuntu1.1 respectively)
+3. make wsl2_defconfig all
